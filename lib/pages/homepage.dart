@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_demo/models/newsinfo.dart';
 import 'package:news_demo/services/api_manager.dart';
 import 'package:intl/intl.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
@@ -21,6 +22,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final items = <Widget>[
+      Icon(Icons.home, size: 30),
+      Icon(Icons.favorite, size: 30),
+      Icon(Icons.settings, size: 30),
+    ];
+
     return Scaffold(
       appBar: AppBar(
         title: Text('News App'),
@@ -34,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                   itemCount: snapshot.data.articles.length,
                   itemBuilder: (context, index) {
                     var article = snapshot.data.articles[index];
-                    var formattedTime =  DateFormat('dd MMM - HH:mm')
+                    var formattedTime = DateFormat('dd MMM - HH:mm')
                         .format(article.publishedAt);
                     return Container(
                       height: 100,
@@ -82,6 +89,9 @@ class _HomePageState extends State<HomePage> {
               return Center(child: CircularProgressIndicator());
           },
         ),
+      ),
+      bottomNavigationBar: CurvedNavigationBar(
+        items: items,
       ),
     );
   }
