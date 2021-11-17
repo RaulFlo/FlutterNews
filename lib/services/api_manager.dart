@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:html';
-
 import 'package:http/http.dart' as http;
 import 'package:news_demo/constants/strings.dart';
 import 'package:news_demo/models/newsinfo.dart';
@@ -18,9 +16,9 @@ class API_Manager {
         var jsonString = response.body;
         var jsonMap = jsonDecode(jsonString);
 
-        var newsModel = NewsModel.fromJson(jsonMap);
+        newsModel = NewsModel.fromJson(jsonMap);
       }
-    } catch (Exception) {
+    } on Exception {
       return newsModel;
     }
 
