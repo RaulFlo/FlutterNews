@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Future<NewsModel> _newsModel;
+  int index;
 
   @override
   void initState() {
@@ -31,6 +32,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('News App'),
+        centerTitle: true,
+        toolbarHeight: 50,
       ),
       body: Container(
         child: FutureBuilder<NewsModel>(
@@ -91,7 +94,11 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       bottomNavigationBar: CurvedNavigationBar(
+        height: 60,
         items: items,
+        buttonBackgroundColor: Colors.blue.shade100,
+        onTap: (index) =>
+            setState(() => this.index = index), //making this state the index
       ),
     );
   }
